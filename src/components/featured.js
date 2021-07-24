@@ -1,6 +1,6 @@
 import React,{useEffect,useState,useContext} from 'react'
 import style from '../styles/featured.module.css'
-import dog from '../assets/dog.png'
+
 import {CartContext} from '../contextApi/cartContextApi.js'
 import Products from './products';
 
@@ -31,10 +31,11 @@ function Featured() {
         const res = await getProduct.json();
         const fr = res.map(i=>{
             if(i.featured === true){
-               setData(i);
+              return setData(i);
             //    console.log(i)
             }
         });
+        console.log(fr)
 
        
         

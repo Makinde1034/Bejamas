@@ -2,12 +2,12 @@ import React,{useContext} from 'react'
 import style from '../styles/cart.module.css'
 import close from '../assets/close.png'
 import {CartContext} from '../contextApi/cartContextApi.js'
-import test from '../assets/dog.png'
+
 
 
 function Cart() {
 
-    const {cart,setCart,cartItems,setCartItems} = useContext(CartContext);
+    const {cart,setCart,cartItems} = useContext(CartContext);
 
     // Delete product from cart
     const cartProducts = () =>{

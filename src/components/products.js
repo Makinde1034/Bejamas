@@ -2,8 +2,7 @@ import React,{useEffect,useState,useContext} from 'react'
 import style from '../styles/products.module.css'
 import arrowup from '../assets//arrowup.png'
 import arrowdown from '../assets//arrowdown.png'
-import arrowleft from '../assets/arrowleft.png'
-import arrowright from '../assets/arrowright.png'
+
 import Cart from '../components/cart.js'
 import {CartContext} from '../contextApi/cartContextApi.js'
 import  ReactPaginate from 'react-paginate'
@@ -20,9 +19,10 @@ function Products() {
     const [constData,setConstData] = useState([])
     const [type,setType] = useState('price');
     const [pageNumber,setPageNumber] = useState(0);
-    const [prevButton,setPrevButton] = useState(false);
     const [checkedValue,setCheckedValue] = useState();
     const [navFilter,setNavFilter] = useState(false)
+
+    console.log(checkedValue)
 
     // contextApi to store items in cart
       const {cartItems,setCartItems,setCart,setLoading,loading,setToastMsg,setToast,setAlsoViewed} = useContext(CartContext); 
@@ -63,15 +63,7 @@ function Products() {
         }
     }
 
-    // move to next page
-    function nextPage(){
-        setPageNumber(pageNumber + 1);
-    }
-
-    // move to previous page
-    function prevPage(){
-        setPageNumber(pageNumber - 1);
-    }
+   
 
     useEffect(()=>{
         getProducts();
