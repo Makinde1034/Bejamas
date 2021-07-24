@@ -2,7 +2,6 @@ import React,{useEffect,useState,useContext} from 'react'
 import style from '../styles/featured.module.css'
 import dog from '../assets/dog.png'
 import {CartContext} from '../contextApi/cartContextApi.js'
-import Item from 'antd/lib/list/Item';
 import Products from './products';
 
 
