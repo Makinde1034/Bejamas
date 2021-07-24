@@ -1,6 +1,9 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
 import style from '../styles/featured.module.css'
 import dog from '../assets/dog.png'
+import {CartContext} from '../contextApi/cartContextApi.js'
+import Item from 'antd/lib/list/Item';
+import Products from './products';
 
 
 
@@ -8,6 +11,16 @@ import dog from '../assets/dog.png'
 function Featured() {
 
     const [data,setData] = useState();
+
+    const {alsoViewed} = useContext(CartContext);
+
+    const viewed = alsoViewed.slice(4,7).map((item,index)=>(
+        <div className={style.about__right__img}>
+            <img src={item.image.src} alt={Products.name} />
+        </div>
+                        
+    ))
+
 
     useEffect(()=>{
         getFeaturedProduct();
@@ -22,7 +35,7 @@ function Featured() {
                setData(i);
             //    console.log(i)
             }
-        })
+        });
 
        
         
@@ -56,9 +69,7 @@ function Featured() {
                 <div className={style.about__right}>
                     <h2>People also buy</h2>
                     <div className={style.about__right__flex}>
-                        <div className={style.about__right__img}></div>
-                        <div className={style.about__right__img}></div>
-                        <div className={style.about__right__img}></div>
+                        {viewed}
                     </div>
                     <h2 className={style.about__detail}>Details</h2>
                     <p className={style.size}>Size: {data?.details.dimmentions.width} * {data?.details.dimmentions.height} pixel</p>

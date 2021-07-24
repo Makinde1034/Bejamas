@@ -98,8 +98,12 @@
 .about__right__img{
     width: 117px;
     height:147px;
-    background-color: black;
     margin-left: 20px;
+    
+}
+.about__right__img img{
+    height: 100%;
+    width: 100%;
 }
 
 .about__detail{

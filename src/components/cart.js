@@ -33,13 +33,15 @@ function Cart() {
         }
     }
 
-    
+    function closeCart(){
+        setCart(false)
+    }
 
     return (
         <div>
             <div className={cart ? `${style.cart} ${style.cart__active}` : `${style.cart}`}>
                 <nav className={style.cart__nav}>
-                    <img src={close} alt="" />
+                    <img onClick={closeCart} src={close} alt="" />
                 </nav>
                 <div className={style.cart__item}>
                     {cartProducts()}

@@ -7,7 +7,9 @@ import arrowright from '../assets/arrowright.png'
 import Cart from '../components/cart.js'
 import {CartContext} from '../contextApi/cartContextApi.js'
 import  ReactPaginate from 'react-paginate'
-
+import {categories} from './filterData'
+import close from '../assets//close.png'
+import filter from '../assets/filter.png'
 
 
 
@@ -15,21 +17,25 @@ import  ReactPaginate from 'react-paginate'
 function Products() {
 
     const [data,setData] = useState([]);
+    const [constData,setConstData] = useState([])
     const [type,setType] = useState('price');
     const [pageNumber,setPageNumber] = useState(0);
     const [prevButton,setPrevButton] = useState(false);
+    const [checkedValue,setCheckedValue] = useState();
+    const [navFilter,setNavFilter] = useState(false)
 
     // contextApi to store items in cart
-      const {cartItems,setCartItems,setCart,setLoading} = useContext(CartContext); 
+      const {cartItems,setCartItems,setCart,setLoading,loading,setToastMsg,setToast,setAlsoViewed} = useContext(CartContext); 
 
     // pagination
     const productssPerPage= 6
     const pagesVisited = productssPerPage * pageNumber
 
-    const displayProducts = data.slice(pagesVisited,pagesVisited + productssPerPage).map((product,index)=>(
+    // display products
+    const displayProducts =  data.slice(pagesVisited,pagesVisited + productssPerPage).map((product,index)=>(
         <div className={style.test} key={index}>
             <div className={style.image}>
-                <img src={product.image.src} alt="" />
+                <img src={product.image.src} alt={product.name} />
                 <button onClick={()=>addProductToCart(product)}>ADD TO CART</button>
             </div>
             <p className={product.category}>{product.category}</p>
@@ -37,6 +43,9 @@ function Products() {
             <p className={style.price}>${product.price}</p>
         </div>
     ))
+    
+    // preloader 
+    const preloader = <div className={style.preloader}></div>
 
     // add product to cart
 
@@ -45,7 +54,12 @@ function Products() {
         const itemExist = cartItems.find(i=>i.name===product.name)
         if(!itemExist){
             setCartItems(prevItems =>[...prevItems,{name:product.name,price:product.price,image:product.image.src}]);
-            setCart(true)
+            setCart(true);
+            setToastMsg(product.name);
+            setToast(true);
+            setTimeout(() => {
+                setToast(false);
+            }, 7000);
         }
     }
 
@@ -69,16 +83,13 @@ function Products() {
         const res = await products.json();
         console.log(res);
         setData(res);
-        setLoading(false)
+        setAlsoViewed(res)
+        setConstData(res);
+        if(res.length>0){
+            setLoading(false);
+        }
     }
 
-    function sorttest(type){
-        // const sorted = [...data].sort((a,b)=>{
-        //     return b.price - a.price
-        // })
-       
-
-    }
 
     // sort products in descending order by price or alphabetically
     function descending(){
@@ -114,17 +125,39 @@ function Products() {
             console.log(sorted);
         }
     }
-
+    // pagination 
     const pageCount = Math.ceil(data.length/productssPerPage);
 
     const changePage = ({selected}) =>{
         setPageNumber(selected);
     }
 
+    // filtering feature
+
+    // function handleChange(category){
+    //     setCheckedValue(category);
+    //     if(checkedValue===category){
+    //         const newFiltered = [...data].filter((i)=>{ return i.category===category})
+    //         console.log(newFiltered)
+    //         setData(newFiltered)
+            
+    //     }
+    // }
+
+    function handleChange(e){
+        if(e.target.checked){
+            setCheckedValue(e.target.value)
+            const newFiltered = [...constData,data].filter((i)=>{ return i.category===e.target.value});
+            setData(newFiltered)
+            
+        }
+    }
+
     return (
         <div>
             <div className={style.nav}>
-                <h2 className={style.cart}>Photography/ premium photosa</h2>
+                <h2  className={style.cart}>Photography/ premium photosa</h2>
+                <img className={style.filterIcon} onClick={()=>setNavFilter(true)} src={filter} alt="" />
                 <div className={style.sort}>
                     <img style={{cursor:"Pointer"}} onClick={ascending} src={arrowup} alt="" />
                     <img style={{ cursor: "Pointer" }} onClick={descending} src={arrowdown} alt="" />
@@ -136,10 +169,24 @@ function Products() {
                 </div>
             </div>
             <div className={style.product}>
-                <div className={style.product__filter}></div>
+                <div className={navFilter ? `${style.product__filter}` : `${style.product__filter} ${style.product__filter__disabled}` }>
+                    <nav className={style.product__filter__nav}>
+                        <h2>Filter</h2>
+                        <img onClick={()=>setNavFilter(false)} src={close} alt="" />
+                    </nav>
+                    <h2>Category</h2>
+                    {categories.map((item,index)=>(
+                        <div key={index} className={style.categories__checkbox}>
+                            <input onChange={(e)=>handleChange(e)}  value={item.name} type="checkbox" />
+                            <label htmlFor={item.name}>{item.name}</label>
+                        </div>
+                    ))}
+
+                </div>
                 <div>
                     <div className={style.product__area}>
-                        {displayProducts}
+                        
+                        {loading ? preloader :displayProducts  }
                     
                     </div>
                     <div className={style.pagination}>
