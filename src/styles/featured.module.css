@@ -1,0 +1,168 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.featured{
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.featured__nav{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.featured__nav button{
+    width: 257px;
+    height:47px;
+    background-color: #000000;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.featured__hero{
+    height: 553px;
+    position: relative;
+}
+
+.featured__hero__img{
+    height: 100%;
+    width: 100%;
+}
+
+.featured__hero__img img{
+    height: 100%;
+    width: 100%;
+}
+
+.featured__photo{
+    width: 271px;
+    height:67px;
+    background-color: white;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.featured__photo p{
+    font-weight: 700;
+}
+
+.about{
+    padding-left: 100px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    padding-right: 100px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 4px solid #e4e4e4;
+}
+
+.about__left{
+    width: 690px;
+}
+
+.about__left h2{
+    margin-bottom: 20px;
+}
+
+.about__left p{
+    line-height: 27px;
+    margin-top: 20px;
+}
+
+.about__right{
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 590px;
+}
+
+.about__right h2{
+    margin-bottom: 30px;
+}
+
+.about__right__flex{
+    display: flex;
+}
+
+.about__right__img{
+    width: 117px;
+    height:147px;
+    background-color: black;
+    margin-left: 20px;
+}
+
+.about__detail{
+    margin-top: 30px;
+}
+
+.size{
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 17px;
+    color: #656565;
+    margin-top: 10px;
+}
+
+@media screen and (max-width:1024px) {
+    .featured{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .featured__nav button{
+        display: none;
+    }
+
+    .featured__hero{
+        height: 239px;
+    }
+
+    .featured__photo{
+        width: 227px;
+        height: 56px;
+    }
+
+    .about{
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .about__left{
+        width: 100%;
+
+    }
+
+    .about__left h2{
+        font-size: 20px;
+    }
+
+    .about__right{
+        width: 100%;
+        /* padding-right: 20px; */
+        align-items: flex-start;
+    }
+
+    .about__right__img{
+        margin-left: 0px;
+        margin-right: 10px;
+        width: 97px;
+        height: 122px;
+    }
+
+    .about__right__flex{
+        overflow-x: auto;
+        width: 100%;
+    }
+}
