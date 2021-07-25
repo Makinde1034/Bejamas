@@ -1,4 +1,4 @@
-import React,{useContext} from 'react'
+import React,{useContext,useState} from 'react'
 import style from '../styles/cart.module.css'
 import close from '../assets/close.png'
 import {CartContext} from '../contextApi/cartContextApi.js'
@@ -7,7 +7,45 @@ import {CartContext} from '../contextApi/cartContextApi.js'
 
 function Cart() {
 
-    const {cart,setCart,cartItems} = useContext(CartContext);
+    const {cart,setCart,cartItems,setCartItems} = useContext(CartContext);
+    
+
+    // increament
+    function increament(index){
+        const newCartItems = [...cartItems]
+        newCartItems[index].quantity++
+        const newQuantity = newCartItems[index].quantity++
+        console.log(newQuantity)
+        setCartItems(newCartItems);
+    }
+
+    // decreament
+    function decreament(index){
+        const newCartItems = [...cartItems]
+        if(newCartItems[index].quantity>0){
+            newCartItems[index].quantity--
+            setCartItems(newCartItems);
+           
+        }
+        
+    }
+    
+    // function getTotal(){
+    //     if(cartItems.length>0){
+    //         const total = cartItems.reduce((total,item)=>{
+    //             return total + item.price
+    //         },0);
+    //         console.log(total)
+    //     }
+
+        
+    // }
+
+  
+    
+
+  
+    
 
     // Delete product from cart
     const cartProducts = () =>{
@@ -21,7 +59,13 @@ function Cart() {
                         </div>
                         <img className={style.cart__img} src={item.image} alt="" />  
                     </div>
-                    <button >DELETE</button>
+                    <div className={style.quantity}>
+                        <button onClick={()=>decreament(index)}>-</button>
+                        <p>{item.quantity}</p>
+                        <button onClick={()=>increament(index)}>+</button>
+                    </div>
+                    <button className={style.cart__item__wrap__button} onClick={()=>deleteProduct(item)} >DELETE</button>
+                    
                 </div> 
             ));
         }else{
@@ -33,6 +77,21 @@ function Cart() {
         }
     }
 
+    // delete product from cart
+    function deleteProduct(item){
+        if(cartItems.length>0){
+            const newProducts = [...cartItems].filter((i)=>{
+            return item.name !== i.name
+            });
+            console.log(newProducts);
+            setCartItems(newProducts); 
+        }
+        
+  
+      
+    }
+
+    // close cart
     function closeCart(){
         setCart(false)
     }

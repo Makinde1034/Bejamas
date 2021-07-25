@@ -53,7 +53,7 @@ function Products() {
         // setCartItems(prevItems =>[...prevItems,{name:product.name}]);
         const itemExist = cartItems.find(i=>i.name===product.name)
         if(!itemExist){
-            setCartItems(prevItems =>[...prevItems,{name:product.name,price:product.price,image:product.image.src}]);
+            setCartItems(prevItems =>[...prevItems,{name:product.name,price:product.price,image:product.image.src,quantity:product.quantity}]);
             setCart(true);
             setToastMsg(product.name);
             setToast(true);

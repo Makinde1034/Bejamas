@@ -71,12 +71,13 @@
     width: 690px;
 }
 
+
 .about__left h2{
     margin-bottom: 20px;
 }
 
 .about__left p{
-    line-height: 27px;
+    line-height: 30px;
     margin-top: 20px;
 }
 
@@ -85,6 +86,7 @@
     align-items: flex-end;
     flex-direction: column;
     width: 590px;
+    margin-top: 20px;
 }
 
 .about__right h2{
@@ -146,6 +148,11 @@
     .about__left{
         width: 100%;
 
+    }
+
+        
+    .category{
+        display: none;
     }
 
     .about__left h2{

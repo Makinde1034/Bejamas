@@ -63,7 +63,7 @@ function Featured() {
             <div className={style.about}>
                 <div className={style.about__left}>
                     <h2>About the {data?.name}</h2>
-                    <h3>{data?.category}</h3>
+                    <h3 className={style.category}>{data?.category}</h3>
                     <p>{data?.details.description}</p>
                 </div>
                 <div className={style.about__right}>
