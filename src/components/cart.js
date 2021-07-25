@@ -14,8 +14,8 @@ function Cart() {
     function increament(index){
         const newCartItems = [...cartItems]
         newCartItems[index].quantity++
-        const newQuantity = newCartItems[index].quantity++
-        console.log(newQuantity)
+        // const newQuantity = newCartItems[index].quantity++
+        // console.log(newQuantity)
         setCartItems(newCartItems);
     }
 
