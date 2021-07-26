@@ -15,6 +15,10 @@
     justify-content: space-between;
 }
 
+.featured__nav h2{
+    font-family: 'Ubuntu', sans-serif;
+}
+
 .featured__nav button{
     width: 257px;
     height:47px;
@@ -74,11 +78,17 @@
 
 .about__left h2{
     margin-bottom: 20px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.about__left h3{
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .about__left p{
     line-height: 30px;
     margin-top: 20px;
+    font-family: sans-serif;
 }
 
 .about__right{

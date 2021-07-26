@@ -38,7 +38,7 @@ function Products() {
                 <img src={product.image.src} alt={product.name} />
                 <button onClick={()=>addProductToCart(product)}>ADD TO CART</button>
             </div>
-            <p className={product.category}>{product.category}</p>
+            <p className={style.test__category}>{product.category}</p>
             <h2>{product.name}</h2>
             <p className={style.price}>${product.price}</p>
         </div>
